@@ -1,0 +1,48 @@
+{
+  "name": "@panhezeng/countdown",
+  "description": "countdown",
+  "version": "1.0.0",
+  "author": "潘何增 <panhezeng@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "keywords": [
+    "countdown",
+    "javascript"
+  ],
+  "homepage": "https://github.com/panhezeng/countdown#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/panhezeng/countdown.git"
+  },
+  "files": [
+    "dist",
+    "src",
+    "package.json",
+    "README"
+  ],
+  "main": "dist/countdown.min.js",
+  "scripts": {
+    "dev:example": "webpack-dev-server --mode development --open --hot --config webpack.example.config.js",
+    "build:example": "webpack --mode production --config webpack.example.config.js",
+    "build": "webpack --mode production"
+  },
+  "dependencies": {
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "webpack": "^4.12.1",
+    "webpack-cli": "^2.1.5",
+    "webpack-dev-server": "^3.1.4"
+  }
+}
