@@ -59,7 +59,7 @@ class App extends React.Component {
         </button>
         <button onClick={() => {
           if (this.cdInstance) {
-            this.cdInstance.clear()
+            this.cdInstance.clear(false)
           }
         }}>
           pause

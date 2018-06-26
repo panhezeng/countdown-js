@@ -106,11 +106,11 @@ export default class Countdown {
     }
   }
 
-  clear () {
+  clear (callback = true) {
     if (this.tid) {
       clearInterval(this.tid)
       this.tid = 0
-      if (Object.prototype.toString.call(this.onComplete) === '[object Function]') {
+      if (callback && Object.prototype.toString.call(this.onComplete) === '[object Function]') {
         this.onComplete()
       }
     }
