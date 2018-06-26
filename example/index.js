@@ -12,7 +12,8 @@ class App extends React.Component {
   initCountdown () {
     if (!this.cdInstance) {
       this.cdInstance = new Countdown({
-        nowTime: new Date().getTime(), endTime: new Date().getTime() + 1000000, onUpdate: (data) => {
+        endTime: new Date().getTime() + 1081000,
+        onUpdate: (data) => {
           this.setState({
             cd: `${data.hours}:${data.minutes}:${data.seconds}`,
           })
@@ -47,14 +48,39 @@ class App extends React.Component {
         <h1>
           cd: {this.state.cd}
         </h1>
-        <button onClick={() => this.destroyCountdown()}>
-          manual complete
+        <button onClick={() => {
+          if (this.cdInstance) {
+            this.cdInstance.init({
+              endTime: new Date().getTime() + 120000,
+            })
+          }
+        }}>
+          update time 00:02:00
         </button>
-        <button onClick={() => this.cdInstance.updateTime({
-          nowTime: new Date().getTime(),
-          endTime: new Date().getTime() + 20000,
-        })}>
-          update time
+        <button onClick={() => {
+          if (this.cdInstance) {
+            this.cdInstance.clear()
+          }
+        }}>
+          pause
+        </button>
+        <button onClick={() => {
+          if (this.cdInstance) {
+            this.cdInstance.start()
+          }
+        }}>
+          continue
+        </button>
+        <button onClick={() => {
+          if (this.cdInstance) {
+            this.cdInstance.clear()
+            this.cdInstance.init({
+              endTime: new Date().getTime() + 60000,
+            })
+            this.cdInstance.start()
+          }
+        }}>
+          manual restart 00:01:00
         </button>
       </div>
     )
