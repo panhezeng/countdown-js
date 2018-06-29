@@ -42,6 +42,8 @@ const cdInstance = new Countdown({
      update 更新倒计时方法，会执行onUpdate回调
      getObject 参数time，时间毫秒，必填，获得该时间的倒计时对象，{days,hours,minutes,seconds}
      clear 手动清除倒计时
+     
+     补零功能使用了String.prototype.padStart()，如需兼容老浏览器，自己添加polyfill
 
 ## 编译
 
