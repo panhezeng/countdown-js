@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import Countdown from '../src/index'
+import Countdown from '../dist/countdown.min'
 
 class App extends React.Component {
   constructor (props) {
@@ -15,14 +15,14 @@ class App extends React.Component {
         endTime: new Date().getTime() + 1081000,
         onUpdate: (data) => {
           this.setState({
-            cd: `${data.hours}:${data.minutes}:${data.seconds}`,
+            cd: `${data.hours}:${data.minutes}:${data.seconds}`
           })
         },
         onComplete: () => {
           this.setState({
-            cd: 'cd complete',
+            cd: 'cd complete'
           })
-        },
+        }
       })
     }
   }
@@ -51,7 +51,7 @@ class App extends React.Component {
         <button onClick={() => {
           if (this.cdInstance) {
             this.cdInstance.init({
-              endTime: new Date().getTime() + 120000,
+              endTime: new Date().getTime() + 120000
             })
           }
         }}>
@@ -75,7 +75,7 @@ class App extends React.Component {
           if (this.cdInstance) {
             this.cdInstance.clear()
             this.cdInstance.init({
-              endTime: new Date().getTime() + 60000,
+              endTime: new Date().getTime() + 60000
             })
             this.cdInstance.start()
           }
@@ -89,5 +89,5 @@ class App extends React.Component {
 
 ReactDOM.render(
   <App/>,
-  document.getElementById('app'),
+  document.getElementById('app')
 )
