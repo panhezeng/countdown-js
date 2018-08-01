@@ -27,8 +27,8 @@
     "build": "webpack --mode production"
   },
   "dependencies": {
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1"
+    "react": "latest",
+    "react-dom": "latest"
   },
   "browserslist": [
     "> 1%",

@@ -5,6 +5,10 @@ module.exports = {
     path: path.resolve(__dirname, 'docs'),
     filename: 'example.js',
   },
+  externals: {
+    'react': 'React',
+    'react-dom': 'ReactDOM'
+  },
   module: {
     rules: [
       {
