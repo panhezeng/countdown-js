@@ -4,7 +4,7 @@
 
 [点击预览](https://panhezeng.github.io/countdown/)
 
-代码目录 /example
+示例代码目录 /example
 
 ## 说明
 
