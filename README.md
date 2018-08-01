@@ -1,27 +1,10 @@
 # countdown
 
-[示例](https://panhezeng.github.io/countdown/)
+## 示例
 
-## use @see example/index.js
+[点击预览](https://panhezeng.github.io/countdown/)
 
-`npm i @panhezeng/countdown -S`
-
-```javascript
-import Countdown from '@panhezeng/countdown'
-
-const cdInstance = new Countdown({
-        endTime: new Date().getTime() + 1081000,
-        onUpdate: (data) => {
-           console.log(`${data.hours}:${data.minutes}:${data.seconds}`)
-        },
-        onComplete: () => {
-          console.log('cd complete')
-        },
-      })
-
-```
-
-
+代码目录 /example
 
 ## 说明
 
@@ -44,6 +27,25 @@ const cdInstance = new Countdown({
      clear 手动清除倒计时
      
      补零功能使用了String.prototype.padStart()，如需兼容老浏览器，自己添加polyfill
+
+## 用法
+
+`npm i @panhezeng/countdown -S`
+
+```javascript
+import Countdown from '@panhezeng/countdown'
+
+const cdInstance = new Countdown({
+        endTime: new Date().getTime() + 1081000,
+        onUpdate: (data) => {
+           console.log(`${data.hours}:${data.minutes}:${data.seconds}`)
+        },
+        onComplete: () => {
+          console.log('cd complete')
+        },
+      })
+
+```
 
 ## 编译
 
