@@ -1,4 +1,4 @@
-export default class Countdown {
+export class Countdown {
   /**
    * @param nowTime 当前时间戳，毫秒
    * @param endTime 结束时间戳，毫秒, 必填
@@ -95,14 +95,14 @@ export default class Countdown {
         days: String(days).padStart(2, '0'),
         hours: String(hours).padStart(2, '0'),
         minutes: String(minutes).padStart(2, '0'),
-        seconds: String(seconds).padStart(2, '0'),
+        seconds: String(seconds).padStart(2, '0')
       }
     }
     return {
       days: days,
       hours: hours,
       minutes: minutes,
-      seconds: seconds,
+      seconds: seconds
     }
   }
 

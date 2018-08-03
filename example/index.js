@@ -1,7 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import Countdown from '../dist/countdown.min'
+//import Countdown from '../dist/countdown.min'
+const Countdown = require('../dist/countdown.min')
 
 class App extends React.Component {
   constructor (props) {

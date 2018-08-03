@@ -27,6 +27,8 @@
      clear 手动清除倒计时
      
      补零功能使用了String.prototype.padStart()，如需兼容老浏览器，自己添加polyfill
+     修改output了方式，通过require或window方式使用，不需要加.default
+
 
 ## 用法
 
