@@ -1,7 +1,7 @@
 {
   "name": "@panhezeng/countdown",
   "description": "countdown",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "author": "潘何增 <panhezeng@gmail.com>",
   "license": "MIT",
   "private": false,
@@ -38,11 +38,11 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.4",
+    "babel-loader": "^7.1.5",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
-    "webpack": "^4.12.1",
+    "webpack": "^4.16.4",
     "webpack-cli": "^2.1.5",
-    "webpack-dev-server": "^3.1.4"
+    "webpack-dev-server": "^3.1.5"
   }
 }
