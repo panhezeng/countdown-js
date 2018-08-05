@@ -9,10 +9,10 @@
     "countdown",
     "javascript"
   ],
-  "homepage": "https://github.com/panhezeng/countdown#readme",
+  "homepage": "https://github.com/panhezeng/countdown-js#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/panhezeng/countdown.git"
+    "url": "git+https://github.com/panhezeng/countdown-js.git"
   },
   "files": [
     "dist",
