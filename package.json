@@ -23,7 +23,7 @@
   "main": "dist/countdown.min.js",
   "scripts": {
     "dev:example": "webpack-dev-server --mode development --open --hot --config webpack.example.config.js",
-    "build:example": "rm -rf docs && mkdir docs && cp index.html docs && webpack --mode production --config webpack.example.config.js",
+    "build:example": "webpack --mode production --config webpack.example.config.js",
     "build": "webpack --mode production"
   },
   "dependencies": {
@@ -36,6 +36,7 @@
     "not ie <= 8"
   ],
   "devDependencies": {
+    "@panhezeng/before-run-webpack-plugin": "latest",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
