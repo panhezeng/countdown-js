@@ -1,35 +1,35 @@
-const path = require('path')
-const BeforeRunWebpackPlugin = require('@panhezeng/before-run-webpack-plugin')
+const path = require("path");
+const BeforeRunWebpackPlugin = require("@panhezeng/before-run-webpack-plugin");
 
 const config = {
-  entry: './example/index.js',
+  entry: "./example/index.js",
   output: {
-    path: path.resolve(__dirname, 'docs'),
-    filename: 'example.js'
+    path: path.resolve(__dirname, "docs"),
+    filename: "example.js"
   },
   externals: {
-    'react': 'React',
-    'react-dom': 'ReactDOM'
+    react: "React",
+    "react-dom": "ReactDOM"
   },
   module: {
     rules: [
       {
         test: /\.jsx?$/,
         exclude: /node_modules|dist/,
-        use: 'babel-loader'
+        use: "babel-loader"
       }
     ]
   },
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: [".js", ".jsx"]
   },
   plugins: [],
   devServer: {}
-}
+};
 
 module.exports = (env, argv) => {
-  if (argv.mode === 'production') {
-    config.plugins.push(new BeforeRunWebpackPlugin({sed: 'react'}))
+  if (argv.mode === "production") {
+    config.plugins.push(new BeforeRunWebpackPlugin({ sed: "react" }));
   }
-  return config
-}
+  return config;
+};
