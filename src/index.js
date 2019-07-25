@@ -9,118 +9,141 @@ export class Countdown {
    * @param padStart 更新回调函数返回对象的时间是否补零，默认true
    * @param delay 触发更新回调函数的间隔时间，默认1000毫秒
    */
-  constructor ({nowTime, endTime, onUpdate, onComplete, autoStart = true, update = false, padStart, delay}) {
+  constructor({
+    nowTime,
+    endTime,
+    onUpdate,
+    onComplete,
+    autoStart = true,
+    update = false,
+    padStart,
+    delay
+  }) {
+    this.unit = {};
+    this.unit.seconds = 1000;
+    this.unit.minutes = this.unit.seconds * 60;
+    this.unit.hours = this.unit.minutes * 60;
+    this.unit.days = this.unit.hours * 24;
 
-    this.unit = {}
-    this.unit.seconds = 1000
-    this.unit.minutes = this.unit.seconds * 60
-    this.unit.hours = this.unit.minutes * 60
-    this.unit.days = this.unit.hours * 24
+    this.tid = 0;
 
-    this.tid = 0
-
-    this.init({nowTime, endTime, onUpdate, onComplete, update, padStart, delay})
+    this.init({
+      nowTime,
+      endTime,
+      onUpdate,
+      onComplete,
+      update,
+      padStart,
+      delay
+    });
     if (autoStart) {
-      this.start()
+      this.start();
     }
   }
 
-  init ({nowTime = new Date().getTime(), endTime, onUpdate, onComplete, update = false, padStart = true, delay = 1000}) {
+  init({
+    nowTime = new Date().getTime(),
+    endTime,
+    onUpdate,
+    onComplete,
+    update = false,
+    padStart = true,
+    delay = 1000
+  }) {
+    if (nowTime) this.nowTime = nowTime;
+    if (endTime) this.endTime = endTime;
+    if (onUpdate) this.onUpdate = onUpdate;
+    if (onComplete) this.onComplete = onComplete;
+    if (padStart) this.padStart = padStart;
+    if (delay) this.delay = delay;
 
-    if (nowTime) this.nowTime = nowTime
-    if (endTime) this.endTime = endTime
-    if (onUpdate) this.onUpdate = onUpdate
-    if (onComplete) this.onComplete = onComplete
-    if (padStart) this.padStart = padStart
-    if (delay) this.delay = delay
-
-    if (Object.prototype.toString.call(this.nowTime) !== '[object Number]') {
-      throw new Error('nowTime必须是数字')
+    if (Object.prototype.toString.call(this.nowTime) !== "[object Number]") {
+      throw new Error("nowTime必须是数字");
     }
-    if (Object.prototype.toString.call(this.endTime) !== '[object Number]') {
-      throw new Error('endTime必须是数字')
+    if (Object.prototype.toString.call(this.endTime) !== "[object Number]") {
+      throw new Error("endTime必须是数字");
     }
 
-    if (Object.prototype.toString.call(this.delay) !== '[object Number]') {
-      throw new Error('delay必须是数字')
-    }
-    if (Object.prototype.toString.call(this.onUpdate) !== '[object Function]') {
-      throw new Error('onUpdate必须是函数')
+    if (Object.prototype.toString.call(this.delay) !== "[object Number]") {
+      throw new Error("delay必须是数字");
     }
 
-    this.diff = this.endTime - this.nowTime
+    if (
+      !/^\[object [^F]*Function\]$/.test(
+        Object.prototype.toString.call(this.onUpdate)
+      )
+    ) {
+      throw new Error("onUpdate必须是函数");
+    }
+
+    this.diff = this.endTime - this.nowTime;
 
     if (this.diff < 0) {
-      throw new Error('endTime不能小于nowTime')
+      throw new Error("endTime不能小于nowTime");
     }
 
     if (update) {
-      this.update()
+      this.update();
     }
-
   }
 
-  start () {
+  start() {
     if (this.tid) {
-      throw new Error('倒计时已经运行中，请先调用clear方法清除')
+      throw new Error("倒计时已经运行中，请先调用clear方法清除");
     }
-    if (this.diff && this.delay) this.tid = setInterval(this.update.bind(this), this.delay)
+    if (this.diff && this.delay)
+      this.tid = setInterval(this.update.bind(this), this.delay);
   }
 
-  update () {
-    this.onUpdate(this.getObject(this.diff))
+  update() {
+    this.onUpdate(this.getObject(this.diff));
     if (this.diff <= 0) {
-      this.clear()
+      this.clear();
     }
-    this.diff -= this.delay
+    this.diff -= this.delay;
   }
 
-  getObject (time) {
-    if (Object.prototype.toString.call(time) !== '[object Number]') {
-      throw new Error('time必须是数字')
+  getObject(time) {
+    if (Object.prototype.toString.call(time) !== "[object Number]") {
+      throw new Error("time必须是数字");
     }
     if (time <= 0) {
-      time = 0
+      time = 0;
     }
-    const days = Math.floor(time / this.unit.days)
-    time %= this.unit.days
-    const hours = Math.floor(time / this.unit.hours)
-    time %= this.unit.hours
-    const minutes = Math.floor(time / this.unit.minutes)
-    time %= this.unit.minutes
-    const seconds = Math.floor(time / this.unit.seconds)
+    const days = Math.floor(time / this.unit.days);
+    time %= this.unit.days;
+    const hours = Math.floor(time / this.unit.hours);
+    time %= this.unit.hours;
+    const minutes = Math.floor(time / this.unit.minutes);
+    time %= this.unit.minutes;
+    const seconds = Math.floor(time / this.unit.seconds);
 
     if (this.padStart) {
       return {
-        days: String(days).padStart(2, '0'),
-        hours: String(hours).padStart(2, '0'),
-        minutes: String(minutes).padStart(2, '0'),
-        seconds: String(seconds).padStart(2, '0')
-      }
+        days: String(days).padStart(2, "0"),
+        hours: String(hours).padStart(2, "0"),
+        minutes: String(minutes).padStart(2, "0"),
+        seconds: String(seconds).padStart(2, "0")
+      };
     }
     return {
       days: days,
       hours: hours,
       minutes: minutes,
       seconds: seconds
-    }
+    };
   }
 
-  clear (callback = true) {
+  clear(callback = true) {
     if (this.tid) {
-      clearInterval(this.tid)
-      this.tid = 0
-      if (callback && Object.prototype.toString.call(this.onComplete) === '[object Function]') {
-        this.onComplete()
+      clearInterval(this.tid);
+      this.tid = 0;
+      if (
+        callback &&
+        Object.prototype.toString.call(this.onComplete) === "[object Function]"
+      ) {
+        this.onComplete();
       }
     }
   }
-
 }
-
-
-
-
-
-
-
