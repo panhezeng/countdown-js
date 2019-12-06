@@ -1,11 +1,12 @@
 const path = require("path");
-const BeforeRunWebpackPlugin = require("@panhezeng/before-run-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const shell = require("shelljs");
+
+const outputPath = path.resolve(__dirname, "../docs");
 
 const config = {
-  entry: "./example/index.js",
   output: {
-    path: path.resolve(__dirname, "docs"),
-    filename: "example.js"
+    path: outputPath
   },
   externals: {
     react: "React",
@@ -28,8 +29,14 @@ const config = {
 };
 
 module.exports = (env, argv) => {
+  const HtmlWebpackPluginOptions = {
+    script: "development",
+    template: "index.html"
+  };
   if (argv.mode === "production") {
-    config.plugins.push(new BeforeRunWebpackPlugin({ sed: "react" }));
+    shell.rm("-rf", outputPath);
+    HtmlWebpackPluginOptions.script = "production.min";
   }
+  config.plugins.push(new HtmlWebpackPlugin(HtmlWebpackPluginOptions));
   return config;
 };
