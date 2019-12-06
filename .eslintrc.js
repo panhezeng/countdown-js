@@ -1,7 +1,7 @@
 module.exports = {
   root: true,
   env: {
-    browser:true,
+    browser: true,
     node: true
   },
   plugins: ["prettier"],
@@ -12,8 +12,5 @@ module.exports = {
   parserOptions: {
     parser: "babel-eslint"
   },
-  globals: {
-    _: false,
-    ActiveXObject: false
-  }
+  globals: {}
 };
